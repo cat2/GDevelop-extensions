@@ -1,0 +1,640 @@
+{
+  "author": "",
+  "description": "",
+  "extensionNamespace": "",
+  "fullName": "WallJump and AirJump",
+  "helpPath": "",
+  "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLXdhbGsiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTQuMTIsMTBIMTlWOC4ySDE1LjM4TDEzLjM4LDQuODdDMTMuMDgsNC4zNyAxMi41NCw0LjAzIDExLjkyLDQuMDNDMTEuNzQsNC4wMyAxMS41OCw0LjA2IDExLjQyLDQuMTFMNiw1LjhWMTFINy44VjcuMzNMOS45MSw2LjY3TDYsMjJINy44TDEwLjY3LDEzLjg5TDEzLDE3VjIySDE0LjhWMTUuNTlMMTIuMzEsMTEuMDVMMTMuMDQsOC4xOE0xNCwzLjhDMTUsMy44IDE1LjgsMyAxNS44LDJDMTUuOCwxIDE1LDAuMiAxNCwwLjJDMTMsMC4yIDEyLjIsMSAxMi4yLDJDMTIuMiwzIDEzLDMuOCAxNCwzLjhaIiAvPjwvc3ZnPg==",
+  "name": "WallAndAirJump",
+  "previewIconUrl": "https://resources.gdevelop-app.com/assets/Icons/walk.svg",
+  "shortDescription": "this will allow you to easily to walljumping and doublejumping",
+  "version": "0.0.0",
+  "tags": [
+    "AirJump",
+    "DoubleJump",
+    "WallJUmp",
+    "PlatformerCharacter"
+  ],
+  "authorIds": [
+    "JD2xwvKWgodlqsGiL1GCH3tDEwq1"
+  ],
+  "dependencies": [],
+  "eventsFunctions": [
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "WalllJump",
+      "private": false,
+      "sentence": "WallJump - MainObject: _PARAM1_ _PARAM2_ SecondObject: _PARAM3_ Type: _PARAM4_ Key(ForTypeKeyReleased): _PARAM5_ NumberOfExtraJumps: _PARAM6_  RaycastDistance: __PARAM7_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PlatformBehavior::IsOnFloor"
+              },
+              "parameters": [
+                "MainObject",
+                "BehaviorForMainObject"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarObjet"
+              },
+              "parameters": [
+                "MainObject",
+                "__WallJump.Number",
+                "=",
+                "GetArgumentAsNumber(\"NumberOfJumps\")"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Or"
+              },
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Raycast"
+                  },
+                  "parameters": [
+                    "SecondObject",
+                    "MainObject.CenterX()",
+                    "MainObject.CenterY()",
+                    "0",
+                    "GetArgumentAsNumber(\"RaycastDistance\")",
+                    "",
+                    "",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Raycast"
+                  },
+                  "parameters": [
+                    "SecondObject",
+                    "MainObject.CenterX()",
+                    "MainObject.CenterY()",
+                    "180",
+                    "16",
+                    "",
+                    "",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "MainObject",
+                    "__WallJump.Number",
+                    "=",
+                    "GetArgumentAsNumber(\"NumberOfJumps\")"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "MainObject",
+                    "__WallJump.Number",
+                    "!=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "StrEqual"
+                      },
+                      "parameters": [
+                        "\"Falling\"",
+                        "=",
+                        "GetArgumentAsString(\"WallJumpType\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PlatformBehavior::IsFalling"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "BehaviorForMainObject"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "__WallJump.Number",
+                        "-",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PlatformBehavior::SetCanJump"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "BehaviorForMainObject"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "StrEqual"
+                      },
+                      "parameters": [
+                        "\"KeyReleased\"",
+                        "=",
+                        "GetArgumentAsString(\"WallJumpType\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "KeyFromTextReleased"
+                      },
+                      "parameters": [
+                        "",
+                        "GetArgumentAsString(\"KeyReleased\")"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "__WallJump.Number",
+                        "-",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PlatformBehavior::SetCanJump"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "BehaviorForMainObject"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Main object(example:Player)",
+          "longDescription": "",
+          "name": "MainObject",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "",
+          "longDescription": "",
+          "name": "BehaviorForMainObject",
+          "optional": false,
+          "supplementaryInformation": "PlatformBehavior::PlatformerObjectBehavior",
+          "type": "behavior"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Second object(example:Block)",
+          "longDescription": "",
+          "name": "SecondObject",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Type of wall jump",
+          "longDescription": "",
+          "name": "WallJumpType",
+          "optional": false,
+          "supplementaryInformation": "[\"Falling\",\"KeyReleased\"]",
+          "type": "stringWithSelector"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Only needed if the option is key released",
+          "longDescription": "",
+          "name": "KeyReleased",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "key"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Number of wall jumps(-1 means no limit)",
+          "longDescription": "",
+          "name": "NumberOfJumps",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "distance for raycast(this raycast is to check if on wall or not)",
+          "longDescription": "",
+          "name": "RaycastDistance",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "AirJump",
+      "private": false,
+      "sentence": "AirJump - MainObject: _PARAM1_ _PARAM2_ Type: _PARAM3_ Key(ForTypeKeyReleased): _PARAM4_ NumberOfExtraJumps: _PARAM5_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PlatformBehavior::IsOnFloor"
+              },
+              "parameters": [
+                "MainObject",
+                "BehaviorForMainObject"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarObjet"
+              },
+              "parameters": [
+                "MainObject",
+                "__AirJumps.Number",
+                "=",
+                "GetArgumentAsNumber(\"NumberOfJumps\")"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "\"Falling\"",
+                "=",
+                "GetArgumentAsString(\"AirJumpType\")"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PlatformBehavior::IsFalling"
+                  },
+                  "parameters": [
+                    "MainObject",
+                    "BehaviorForMainObject"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "__AirJumps.Number",
+                        "!=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PlatformBehavior::SetCanJump"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "BehaviorForMainObject"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "__AirJumps.Number",
+                        "-",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "\"KeyReleased\"",
+                "=",
+                "GetArgumentAsString(\"AirJumpType\")"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "KeyFromTextReleased"
+                  },
+                  "parameters": [
+                    "",
+                    "GetArgumentAsString(\"KeyReleased\")"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "__AirJumps.Number",
+                        "!=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PlatformBehavior::SetCanJump"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "BehaviorForMainObject"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "MainObject",
+                        "__AirJumps.Number",
+                        "-",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object(example:Player)",
+          "longDescription": "",
+          "name": "MainObject",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "",
+          "longDescription": "",
+          "name": "BehaviorForMainObject",
+          "optional": false,
+          "supplementaryInformation": "PlatformBehavior::PlatformerObjectBehavior",
+          "type": "behavior"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Type of air jump",
+          "longDescription": "",
+          "name": "AirJumpType",
+          "optional": false,
+          "supplementaryInformation": "[\"Falling\",\"KeyReleased\"]",
+          "type": "stringWithSelector"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Only needed if the option is key released",
+          "longDescription": "",
+          "name": "KeyReleased",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "key"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Number of extra jumps(-1 means no limit)",
+          "longDescription": "",
+          "name": "NumberOfJumps",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": []
+}
